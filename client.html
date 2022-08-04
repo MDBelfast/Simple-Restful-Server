@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="demo">
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDoc()">list</button>
+</div>
+
+<div id="demo1">
+<button type="button" onclick="loadDoc1()">add</button>
+</div>
+
+<div id="demo2">
+<button type="button" onclick="loadDoc2()">delete</button>
+</div>
+
+<div id="demo3">
+<button type="button" onclick="loadDoc3()">put</button>
+</div>
+
+<script>
+
+const user = {
+   "user4" : {
+      "name" : "mohit",
+      "password" : "password4",
+      "profession" : "teacher",
+      "id": 4
+   }
+};
+
+function loadDoc(e) {
+  var url  = "http://localhost:8081/listUsers";
+  const xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    var users = JSON.parse(xhr.responseText);
+    document.getElementById("demo").innerHTML =
+    xhr.responseText;
+  }
+  xhr.open("GET", url);
+  xhr.send();
+}
+
+function loadDoc1() {
+  var url  = "http://localhost:8081/addUser";
+  const xhr = new XMLHttpRequest();
+  xhr.open("Post", url);
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhr.send(JSON.stringify(user));
+}
+
+function loadDoc2(e) {
+  var url  = "http://localhost:8081/deleteUser";
+  var xhr = new XMLHttpRequest();
+  xhr.open("DELETE", url + '/4', true);
+  xhr.onload = function () {
+	var users = JSON.parse(xhr.responseText);
+	if (xhr.readyState == 4 && xhr.status == "200") {
+		console.table(users);
+	} else {
+		console.error(users);
+	}
+  }
+  xhr.send(null);
+}
+
+function loadDoc3(e) {
+  var url  = "http://localhost:8081/putUser";
+  var xhr = new XMLHttpRequest();
+  xhr.open("PUT", url + '/4', true);
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhr.onload = function () {
+	var users = JSON.parse(xhr.responseText);
+	if (xhr.readyState == 4 && xhr.status == "200") {
+		console.table(users);
+	} else {
+		console.error(users);
+	}
+  }
+  xhr.send(JSON.stringify(user));
+}
+
+</script>
+
+</body>
+</html>
+

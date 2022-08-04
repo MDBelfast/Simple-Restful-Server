@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="demo">
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDoc()">list</button>
+</div>
+
+<div id="demo1">
+<button type="button" onclick="loadDoc1()">add</button>
+</div>
+
+<div id="demo2">
+<button type="button" onclick="loadDoc2()">delete</button>
+</div>
+
+<div id="demo3">
+<button type="button" onclick="loadDoc3()">put</button>
+</div>
+
+<script>
+
+const user = {
+   "user4" : {
+      "name" : "mohit",
+      "password" : "password4",
+      "profession" : "teacher",
+      "id": 4
+   }
+};
+
+function loadDoc(e) {
+  var url  = "http://localhost:8081/listUsers";
+  fetch(url, {method: 'GET'})
+  .then(x => x.text())
+  .then(y => document.getElementById("demo").innerHTML = y);
+}
+
+function loadDoc1() {
+  var url  = "http://localhost:8081/addUser";
+ 
+  fetch(url, {
+    method: 'POST', // or 'PUT'
+    body: JSON.stringify(user), // data can be `string` or {object}!
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    })
+  }).then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(response => console.log('Success:', response));
+
+}
+
+function loadDoc2(e) {
+  var url  = "http://localhost:8081/deleteUser";
+
+  fetch(url + '/4', {
+    method: 'DELETE',
+  })
+.then(res => res.text()) // or res.json()
+.then(res => console.log(res));
+}
+
+function loadDoc3() {
+  var url  = "http://localhost:8081/putUser";
+ 
+  fetch(url + '/4', {
+    method: 'PUT', // or 'PUT'
+    body: JSON.stringify(user), // data can be `string` or {object}!
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    })
+  }).then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(response => console.log('Success:', response));
+
+}
+
+</script>
+
+</body>
+</html>
+
