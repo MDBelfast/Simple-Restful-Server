@@ -17,3 +17,5 @@ $ node server.js
 
 use web browser to open html file.
 
+[development footprint](https://hackmd.io/xVprDfcvSBCCnY9bNfgTlA?view)
+
