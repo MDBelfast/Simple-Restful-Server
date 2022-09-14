@@ -6,16 +6,36 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
+//for connecting to Postgres server.
+const knex = require('knex')({
+  client: 'pg',
+  connection: {
+    host : '127.0.0.1',
+    port : 5432,
+    user : 'tien-tsewu',
+    password : 'testdb',
+    database : 'testdb'
+  }
+});
 
 const cors = require('cors');
 app.use(cors({
     origin: '*'
 }));
 
+var objArr = []; // used to store data listed for geting all.
 app.get('/listUsers', function (req, res) {
-   fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-      console.log( data );
-      res.end( data );
+   knex.select('*').from('users')
+      .then(function (data) {
+         data.forEach(function(v,i){
+            objArr= [...objArr, {[v.userid]:
+                                   {"name" : v.name,
+                                    "password": v.password,
+                                    "profession": v.profession,
+                                    "id": v.id}}]
+         })
+         res.end(JSON.stringify(objArr));
+		 console.log(objArr);
    });
 })
 
