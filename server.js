@@ -39,20 +39,16 @@ app.get('/listUsers', function (req, res) {
    });
 })
 
+// insert user4 from client.
 app.post('/addUser', function (req, res) {
-   fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-      data = JSON.parse( data );
-      data["user4"] = req.body["user4"];
-      console.log(data);
-
-      var newdata = JSON.stringify(data);
-      fs.writeFile('users.json', newdata, err => {
-         // error checking
-         if(err) throw err;
-      });   
-
-      res.end( JSON.stringify(data));
-   });
+   let post_data = req.body;
+   let userId = Object.keys(post_data)[0]; // get the user key, "user4"
+   knex('users').insert({userid: (Object.keys(post_data))[0],
+                         name: post_data[userId]["name"],
+                         password: post_data[userId]["password"],
+                         profession: post_data[userId]["profession"],
+                         id: post_data[userId]["id"]})
+                .then(()=>{});
 })
 
 app.delete('/deleteUser/:Id', function (req, res) {
