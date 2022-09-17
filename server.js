@@ -53,14 +53,10 @@ app.post('/addUser', function (req, res) {
 
 app.delete('/deleteUser/:Id', function (req, res) {
    const Id = Number(req.params.Id);
-   // First read existing users.
-   fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-      console.log("delete %d\n", Id);
-      data = JSON.parse( data );
-      delete data["user" + Id];
-      console.log( data );
-      res.end( JSON.stringify(data));
- });
+   knex('users')
+      .where('id', Id)
+      .del()
+      .then(()=>{});
 });
 
 app.put('/putUser/:Id', function (req, res) {
