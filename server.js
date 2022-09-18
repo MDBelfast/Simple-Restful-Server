@@ -63,14 +63,19 @@ app.put('/putUser/:Id', function (req, res) {
    const Id = Number(req.params.Id);
    fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
       data = JSON.parse( data );
-      data["user4"] = req.body["user" + Id];
       console.log(data);
 
-      var newdata = JSON.stringify(data);
-      fs.writeFile('users.json', newdata, err => {
-         // error checking
-         if(err) throw err;
-      });   
+      var user = "user" + Id;
+      if (user in data){
+         data["user4"] = req.body[user];
+         var newdata = JSON.stringify(data);
+         fs.writeFile('users.json', newdata, err => {
+            // error checking
+            if(err) throw err;
+         });
+      } else {
+         console.log(user + " not exist\n");
+      }
 
       res.end( JSON.stringify(data));
    });
