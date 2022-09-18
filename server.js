@@ -61,24 +61,19 @@ app.delete('/deleteUser/:Id', function (req, res) {
 
 app.put('/putUser/:Id', function (req, res) {
    const Id = Number(req.params.Id);
-   fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-      data = JSON.parse( data );
-      console.log(data);
+   var user = "user" + Id;
+   const user_data = req.body[user];
 
-      var user = "user" + Id;
-      if (user in data){
-         data["user4"] = req.body[user];
-         var newdata = JSON.stringify(data);
-         fs.writeFile('users.json', newdata, err => {
-            // error checking
-            if(err) throw err;
-         });
-      } else {
-         console.log(user + " not exist\n");
-      }
-
-      res.end( JSON.stringify(data));
-   });
+   knex('users')
+     .where('id', Id)
+     .update({
+        userid : user,
+        name: user_data["name"],
+        password: user_data["password"],
+        profession: user_data["profession"],
+        id : Id
+   })
+   .then(()=>{})
 
    res.end( JSON.stringify(req.body));
 });
