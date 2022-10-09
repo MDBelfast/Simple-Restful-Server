@@ -23,10 +23,10 @@ app.use(cors({
     origin: '*'
 }));
 
-var objArr = []; // used to store data listed for geting all.
 app.get('/listUsers', function (req, res) {
    knex.select('*').from('users')
       .then(function (data) {
+         let objArr = []; // used to store data listed for geting all.
          data.forEach(function(v,i){
             objArr= [...objArr, {[v.userid]:
                                    {"name" : v.name,
