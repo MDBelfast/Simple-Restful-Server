@@ -1,0 +1,7 @@
+ userid |  name  | password  | profession | id 
+--------+--------+-----------+------------+----
+ user1  | mahesh | password1 | teacher    |  1
+ user2  | suresh | password2 | librarian  |  2
+ user3  | ramesh | password3 | clerk      |  3
+(3 rows)
+
