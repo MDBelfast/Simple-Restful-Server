@@ -4,7 +4,7 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-docker compose build && docker compose up -d
+docker-compose build && docker-compose up -d
 if [ $? -ne 0 ] ; then
     printf "${RED}Docker Compose Failed${NC}\n"
     exit -1
