@@ -5,6 +5,7 @@ jobs:
     name: CI
     runs-on: macos-latest
     steps:
-     - name: unit-test
+     - name: Checkout code
        uses: actions/checkout@v3
+     - name: unit-test
        run: bash ./unit-test.sh
