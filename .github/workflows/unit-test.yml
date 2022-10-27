@@ -10,7 +10,12 @@ jobs:
        run: |
          mkdir -p ~/.docker/machine/cache
          curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
-         brew install docker docker-machine docker-compose
+         DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+         mkdir -p $DOCKER_CONFIG/cli-plugins
+         curl -SL https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+         brew install docker docker-machine
+         chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+         chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
      - name: Checkout code
        uses: actions/checkout@v3
      - name: unit-test
