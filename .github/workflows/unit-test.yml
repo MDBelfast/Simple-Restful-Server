@@ -8,6 +8,8 @@ jobs:
      - uses: actions/checkout@v2
      - name: Install docker
        run: |
+         mkdir -p ~/.docker/cli-plugins
+         ln -sfn /usr/local/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
          export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
          brew install docker docker-compose colima
      - name: Checkout code
