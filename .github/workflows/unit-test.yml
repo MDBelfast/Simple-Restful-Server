@@ -8,7 +8,7 @@ jobs:
      - uses: actions/checkout@v2
      - name: Install docker
        run: |
-         export DOCKER_HOST=unix://$HOME/.colima/docker.sock
+         export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
          brew install docker docker-compose colima
      - name: Checkout code
        uses: actions/checkout@v3
