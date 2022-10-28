@@ -5,14 +5,8 @@ jobs:
     name: CI
     runs-on: macos-latest
     steps:
-     - uses: actions/checkout@v2
+     - uses: actions/checkout@v3
      - name: Install docker
        run: |
-         mkdir -p ~/.docker/cli-plugins
-         ln -sfn /usr/local/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
-         export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
-         brew install docker docker-compose colima
-     - name: Checkout code
-       uses: actions/checkout@v3
-     - name: unit-test
-       run: bash ./unit_test.sh
+         brew install docker docker-machine docker-compose
+         bash ./unit_test.sh
