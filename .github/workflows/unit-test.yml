@@ -11,4 +11,4 @@ jobs:
          brew install docker docker-machine docker-compose
          sudo docker --version
          sudo docker-compose --version
-         sudo find / -type f -name docker.sock
+         docker build -t test:latest
