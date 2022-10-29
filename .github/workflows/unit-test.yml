@@ -9,6 +9,4 @@ jobs:
      - name: Install docker
        run: |
          brew install docker docker-machine docker-compose
-         mkdir -p ~/.docker/cli-plugins
-         ln -sfn /usr/local/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
-         bash ./unit_test.sh
+		 sudo docker --version
