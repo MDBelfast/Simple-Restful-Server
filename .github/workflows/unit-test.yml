@@ -8,6 +8,6 @@ jobs:
      - uses: actions/checkout@v3
      - name: Install docker
        run: |
-         brew install docker docker-machine
+         brew install docker docker-machine docker-compose
          sudo docker --version
          sudo docker-compose --version
