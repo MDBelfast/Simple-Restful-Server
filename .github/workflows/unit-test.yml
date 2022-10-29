@@ -12,4 +12,4 @@ jobs:
          export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
          sudo docker --version
          sudo docker-compose --version
-         sudo ll /var/run
+         sudo ls /var/run
