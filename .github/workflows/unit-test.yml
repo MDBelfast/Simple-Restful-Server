@@ -11,6 +11,4 @@ jobs:
          brew install docker docker-machine docker-compose
          sudo docker --version
          sudo docker-compose --version
-         sudo docker-machine create default
-         sudo docker-compose build
-         sudo docker-compose up -d
+         find / -f -name docker.sock
