@@ -12,4 +12,4 @@ jobs:
          brew install docker docker-machine docker-compose
          sudo docker --version
          sudo docker-compose --version
-         sudo ls /$HOME/
+         sudo docker build -t test:latest .
