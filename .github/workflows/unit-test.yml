@@ -12,4 +12,5 @@ jobs:
          brew install docker docker-machine docker-compose colima
          sudo docker --version
          sudo docker-compose --version
-         sudo ls /$HOME/
+         brew services restart docker-machine
+         sudo ls /var/run
