@@ -13,4 +13,4 @@ jobs:
          sudo docker --version
          sudo docker-compose --version
          brew services restart docker-machine
-         sudo ls /var/run
+         sudo docker build -t test:latest .
