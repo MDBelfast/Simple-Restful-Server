@@ -8,8 +8,8 @@ jobs:
      - uses: actions/checkout@v3
      - name: Install docker
        run: |
-         brew install docker docker-machine docker-compose
          export HOMEBREW_NO_INSTALL_CLEANUP=1
+         brew install docker docker-machine docker-compose
          sudo docker --version
          sudo docker-compose --version
          sudo ls /$HOME/
