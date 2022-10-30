@@ -12,5 +12,6 @@ jobs:
          brew install docker docker-machine docker-compose colima
          sudo docker --version
          sudo docker-compose --version
-         sudo colima start
+         colima start
+         sudo ls /$HOME/
          sudo docker build -t test:latest .
