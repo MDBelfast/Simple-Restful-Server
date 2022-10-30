@@ -9,7 +9,7 @@ jobs:
      - name: Install docker
        run: |
          export HOMEBREW_NO_INSTALL_CLEANUP=1
-         brew install docker docker-machine docker-compose
+         brew install docker docker-machine docker-compose colima
          sudo docker --version
          sudo docker-compose --version
-         sudo ls /var/run
+         sudo ls /$HOME/
