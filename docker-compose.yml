@@ -10,7 +10,7 @@ services:
     ports:
       - '5432:5432'
     volumes: 
-      - ./db:/var/lib/postgresql/data
+      - ./db:/var/lib/postgresql/data:Z
       - ./init_user_db.sql:/docker-entrypoint-initdb.d/init_user_db.sql
   nodejs_restful_server:
     build: .
