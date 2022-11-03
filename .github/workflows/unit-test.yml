@@ -13,5 +13,4 @@ jobs:
          sudo docker --version
          sudo docker-compose --version
          colima start
-         sudo docker-compose build
-         sudo docker-compose up -d
+         sudo bash ./unit_test.sh
