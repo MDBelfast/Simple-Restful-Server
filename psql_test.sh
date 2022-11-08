@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 docker ps
-docker run --name postgres_db psql -U postgres -c "select * from users;" 1> db_init_test.txt
+docker exec postgres_db psql -U postgres -c "select * from users;" 1> db_init_test.txt
 sed -i -e "s/\r//g" db_init_test.txt
 docker-compose ps
 
